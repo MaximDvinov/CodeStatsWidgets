@@ -92,7 +92,7 @@ class TotalXpWidget : GlanceAppWidget(), KoinComponent {
         Column(
             modifier = GlanceModifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+                .padding(horizontal = 16.dp, vertical = 1.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -118,14 +118,14 @@ class TotalXpWidget : GlanceAppWidget(), KoinComponent {
 
             Box(
                 modifier = GlanceModifier
-                    .background(GlanceTheme.colors.primary)
+                    .background(GlanceTheme.colors.secondaryContainer)
                     .padding(horizontal = 16.dp, vertical = 2.dp)
                     .cornerRadius(16.dp)
             ) {
                 Text(
                     text = newXp,
                     style = TextStyle(
-                        color = GlanceTheme.colors.onPrimary,
+                        color = GlanceTheme.colors.onSecondaryContainer,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium
                     )
