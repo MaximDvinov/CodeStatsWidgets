@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="Theme.CodeStatsWidgets.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <!-- Radius of the outer bound of widgets to make the rounded corners -->
+        <item name="appWidgetRadius">28dp</item>
+        <!--
+        Radius of the inner view's bound of widgets to make the rounded corners.
+        It needs to be 8dp or less than the value of appWidgetRadius
+        -->
+        <item name="appWidgetInnerRadius">8dp</item>
+    </style>
+
+    <style name="Theme.CodeStatsWidgets.AppWidgetContainer" parent="Theme.CodeStatsWidgets.AppWidgetContainerParent">
+        <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
+        <item name="appWidgetPadding">28dp</item>
+        <item name="android:background">@color/material_dynamic_secondary95</item>
+    </style>
+</resources>
