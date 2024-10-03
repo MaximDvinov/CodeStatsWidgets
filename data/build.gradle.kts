@@ -36,7 +36,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.bundles.koin)
 
+    implementation(libs.kotlinx.coroutines.core)
 
     implementation(project(":network"))
 }

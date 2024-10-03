@@ -2,7 +2,6 @@
     style="@style/Widget.CodeStatsWidgets.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_secondary95"
     android:theme="@style/Theme.CodeStatsWidgets.AppWidgetContainer">
 
     <TextView
@@ -14,7 +13,6 @@
         android:layout_margin="8dp"
         android:contentDescription="@string/appwidget_text"
         android:text="@string/appwidget_text"
-        android:textColor="@color/material_dynamic_secondary30"
         android:textSize="24sp"
         android:textStyle="bold|italic" />
 </RelativeLayout>

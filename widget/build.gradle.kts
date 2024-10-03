@@ -52,7 +52,10 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.material3)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.bundles.koin)
+
+    implementation(libs.kotlinx.coroutines.core)
+
+    implementation(project(":data"))
 }

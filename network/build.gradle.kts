@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -36,6 +37,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
 
     implementation(libs.bundles.ktor)
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
 
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.bundles.koin)
