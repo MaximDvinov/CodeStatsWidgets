@@ -7,7 +7,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -15,14 +14,12 @@ import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.LocalSize
-import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.appWidgetBackground
 import androidx.glance.appwidget.components.Scaffold
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
-import androidx.glance.appwidget.updateAll
 import androidx.glance.background
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Box
@@ -34,7 +31,6 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import code.stats.data.repositories.CodeStatsRepository
 import code.stats.widget.utils.formatter
-import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -43,6 +39,7 @@ class TotalXpWidget : GlanceAppWidget(), KoinComponent {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val repository: CodeStatsRepository by inject()
+        val sharedPreferences = context.getSharedPreferences("Prefs", Context.MODE_PRIVATE)
 
         provideContent {
             var totalXp by remember {
@@ -54,23 +51,27 @@ class TotalXpWidget : GlanceAppWidget(), KoinComponent {
             }
 
             LaunchedEffect(Unit) {
-                repository.getStatByUser("MaximDvinov").onSuccess {
-                    totalXp = it.totalXp?.formatter() ?: "Not data"
-                    newXp = "+${it.newXp?.formatter() ?: "0"}"
-                }
-                    .onFailure {
+                val name = sharedPreferences.getString("username", "")
+
+                if (name != null) {
+                    repository.getStatByUser(name).onSuccess {
+                        totalXp = it.totalXp?.formatter() ?: "Not data"
+                        newXp = "+${it.newXp?.formatter() ?: "0"}"
+                    }.onFailure {
                         totalXp = "Error"
                         Log.e("TotalXpWidget", "getStat", it)
                     }
+                } else {
+                    totalXp = "Write nickname"
+                }
+
+
             }
 
             GlanceTheme {
                 Scaffold(
-                    modifier = GlanceModifier
-                        .background(GlanceTheme.colors.background)
-                        .appWidgetBackground()
-                        .cornerRadius(28.dp),
-                    horizontalPadding = 0.dp
+                    modifier = GlanceModifier.background(GlanceTheme.colors.background)
+                        .appWidgetBackground().cornerRadius(28.dp), horizontalPadding = 0.dp
                 ) {
                     TotalXpContent(totalXp, newXp)
                 }
@@ -90,16 +91,13 @@ class TotalXpWidget : GlanceAppWidget(), KoinComponent {
         }
 
         Column(
-            modifier = GlanceModifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp, vertical = 1.dp),
+            modifier = GlanceModifier.fillMaxSize().padding(horizontal = 16.dp, vertical = 1.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (size.height > 130.dp) {
                 Text(
-                    text = "total XP",
-                    style = TextStyle(
+                    text = "total XP", style = TextStyle(
                         color = GlanceTheme.colors.tertiary,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium
@@ -117,14 +115,11 @@ class TotalXpWidget : GlanceAppWidget(), KoinComponent {
             )
 
             Box(
-                modifier = GlanceModifier
-                    .background(GlanceTheme.colors.secondaryContainer)
-                    .padding(horizontal = 16.dp, vertical = 2.dp)
-                    .cornerRadius(16.dp)
+                modifier = GlanceModifier.background(GlanceTheme.colors.secondaryContainer)
+                    .padding(horizontal = 16.dp, vertical = 2.dp).cornerRadius(16.dp)
             ) {
                 Text(
-                    text = newXp,
-                    style = TextStyle(
+                    text = newXp, style = TextStyle(
                         color = GlanceTheme.colors.onSecondaryContainer,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium
