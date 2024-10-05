@@ -6,6 +6,7 @@ import code.stats.network.CodeStatsApi
 
 class CodeStatsRepositoryImpl(private val api: CodeStatsApi) : CodeStatsRepository {
     override suspend fun getStatByUser(username: String): Result<UserStatData> {
-        return api.getStatByUser(username).map { it.toData() }
+        return api.getStatByUser(username)
+            .map { it.toData() }
     }
 }

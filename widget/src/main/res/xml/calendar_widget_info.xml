@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/total_xp"
+    android:description="@string/calendar_widget"
     android:initialKeyguardLayout="@layout/glance_default_loading_layout"
     android:initialLayout="@layout/glance_default_loading_layout"
     android:minWidth="80dp"
     android:minHeight="40dp"
-    android:previewImage="@drawable/total_xp_preview"
+    android:previewImage="@drawable/calendar_days"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="3600000"
     android:widgetCategory="home_screen" />

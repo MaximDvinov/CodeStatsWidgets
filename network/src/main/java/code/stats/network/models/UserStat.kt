@@ -1,13 +1,14 @@
 package code.stats.network.models
 
 
+import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserStat(
     @SerialName("dates")
-    val dates: Map<String, Int>? = null,
+    val dates: Map<LocalDate, Int>? = null,
     @SerialName("languages")
     val languages: Map<String, StatItem>? = null,
     @SerialName("machines")

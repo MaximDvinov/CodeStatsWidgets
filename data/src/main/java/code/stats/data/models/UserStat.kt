@@ -1,9 +1,10 @@
 package code.stats.data.models
 
 import code.stats.network.models.UserStat
+import kotlinx.datetime.LocalDate
 
 data class UserStatData(
-    val dates: Map<String, Int>? = null,
+    val dates: Map<LocalDate, Int>? = null,
     val languages: Map<String, StatItemData>? = null,
     val machines: Map<String, StatItemData>? = null,
     val newXp: Int? = null,

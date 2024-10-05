@@ -38,7 +38,8 @@ dependencies {
 
     implementation(libs.bundles.ktor)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.datetime)
 
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.bundles.koin)

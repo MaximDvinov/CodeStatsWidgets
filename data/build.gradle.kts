@@ -38,6 +38,7 @@ dependencies {
 
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.bundles.koin)
+    implementation(libs.kotlinx.datetime)
 
     implementation(libs.kotlinx.coroutines.core)
 
