@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceModifier
@@ -32,7 +33,7 @@ import kotlin.math.floor
 import kotlin.math.roundToInt
 
 @Composable
-fun CalendarWidgetContent(days: List<Double>) {
+fun CalendarWidgetContent(days: List<Int>) {
     val context = LocalContext.current
     val size = LocalSize.current
     val padding by remember(days, size) {
@@ -50,11 +51,10 @@ fun CalendarWidgetContent(days: List<Double>) {
         derivedStateOf { days.take(count.toInt()) }
     }
     val daysChunked by remember(days, size) {
-        derivedStateOf { daysTake.reversed().chunked(7) }
-    }
-
-    val maxValue by remember(days, size) {
-        derivedStateOf { daysTake.maxOf { it } }
+        derivedStateOf {
+            val maxValue = daysTake.maxOf { it }
+            daysTake.reversed().chunked(7).map { list -> list.map { it / maxValue.toFloat() } }
+        }
     }
 
     if (daysTake.isEmpty()) return
@@ -86,8 +86,8 @@ fun CalendarWidgetContent(days: List<Double>) {
                                     .cornerRadius(daySize)
                                     .size(daySize)
                                     .background(
-                                        GlanceTheme.colors.primary.getColor(context)
-                                            .copy(alpha = (it / maxValue).toFloat())
+                                        if (it != 0f) GlanceTheme.colors.primary.getColor(context)
+                                            .copy(alpha = (it)) else Color.Gray.copy(alpha = 0.05f)
                                     ),
                                 contentAlignment = Alignment.Center
                             ) {

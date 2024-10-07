@@ -24,29 +24,26 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class CalendarWidget : GlanceAppWidget(), KoinComponent {
+class CalendarWidget() : GlanceAppWidget(), KoinComponent {
     override val sizeMode: SizeMode = SizeMode.Exact
     private val repository: CodeStatsRepository by inject()
+    private val getDatesWithXP: GetDatesWithXP by inject()
 
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val sharedPreferences = context.getSharedPreferences("Prefs", Context.MODE_PRIVATE)
 
         provideContent {
-            var days: List<Double> by remember { mutableStateOf(emptyList()) }
+            var days: List<Int> by remember { mutableStateOf(emptyList()) }
 
             LaunchedEffect(Unit) {
                 val name = sharedPreferences.getString("username", "")
                 if (name != null) {
                     launch {
-                        repository.getStatByUser(name).onSuccess { userStat ->
-                            val dates = userStat.dates
-                                ?.toList()
-                                ?.sortedBy { it.first }
-                            days = dates
-                                ?.map { it.second.toDouble() }
-                                ?.reversed()
-                                ?: emptyList()
+                        getDatesWithXP(name).onSuccess { dates ->
+                            days = dates.map { it.second }.take(70)
+                            Log.i("get stat", "$days")
+
                         }.onFailure {
                             Log.e("CalendarWidget", "getStat", it)
                             AppLogger.log("get stat error: $it")
