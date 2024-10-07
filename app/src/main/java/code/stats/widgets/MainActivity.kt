@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
 import androidx.glance.appwidget.updateAll
 import androidx.lifecycle.lifecycleScope
+import code.stats.analytics.AppLogger
 import code.stats.widget.totalxp.TotalXpWidget
 import code.stats.widgets.ui.theme.CodeStatsWidgetsTheme
 import kotlinx.coroutines.launch

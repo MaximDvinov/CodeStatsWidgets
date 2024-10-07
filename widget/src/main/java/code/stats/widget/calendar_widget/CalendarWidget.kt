@@ -18,6 +18,7 @@ import androidx.glance.appwidget.components.Scaffold
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
+import code.stats.analytics.AppLogger
 import code.stats.data.repositories.CodeStatsRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -48,6 +49,7 @@ class CalendarWidget : GlanceAppWidget(), KoinComponent {
                                 ?: emptyList()
                         }.onFailure {
                             Log.e("CalendarWidget", "getStat", it)
+                            AppLogger.log("get stat error: $it")
                         }
                     }
                 }

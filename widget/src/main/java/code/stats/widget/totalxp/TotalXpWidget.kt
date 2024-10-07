@@ -29,6 +29,7 @@ import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
+import code.stats.analytics.AppLogger
 import code.stats.data.repositories.CodeStatsRepository
 import code.stats.widget.utils.formatter
 import org.koin.core.component.KoinComponent
@@ -60,6 +61,7 @@ class TotalXpWidget : GlanceAppWidget(), KoinComponent {
                     }.onFailure {
                         totalXp = "Error"
                         Log.e("TotalXpWidget", "getStat", it)
+                        AppLogger.log("get stat error: $it")
                     }
                 } else {
                     totalXp = "Write nickname"
