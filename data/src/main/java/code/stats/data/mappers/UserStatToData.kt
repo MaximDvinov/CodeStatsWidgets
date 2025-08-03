@@ -1,16 +1,9 @@
-package code.stats.data.models
+package code.stats.data.mappers
 
+import code.stats.domain.models.StatItemData
+import code.stats.domain.models.UserStatData
+import code.stats.network.models.StatItem
 import code.stats.network.models.UserStat
-import kotlinx.datetime.LocalDate
-
-data class UserStatData(
-    val dates: Map<LocalDate, Int>? = null,
-    val languages: Map<String, StatItemData>? = null,
-    val machines: Map<String, StatItemData>? = null,
-    val newXp: Int? = null,
-    val totalXp: Int? = null,
-    val user: String? = null,
-)
 
 fun UserStat.toData(): UserStatData {
     return UserStatData(
@@ -22,3 +15,8 @@ fun UserStat.toData(): UserStatData {
         user = user
     )
 }
+
+fun StatItem.toData() = StatItemData(
+    newXps = newXps,
+    xps = xps,
+)

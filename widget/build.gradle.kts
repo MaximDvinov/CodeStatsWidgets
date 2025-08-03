@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "code.stats.widget"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26
@@ -61,4 +61,5 @@ dependencies {
 
     implementation(project(":data"))
     implementation(project(":analytics"))
+    implementation(project(":domain"))
 }

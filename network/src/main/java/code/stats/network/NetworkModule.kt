@@ -2,6 +2,7 @@ package code.stats.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.ANDROID
@@ -15,7 +16,7 @@ import org.koin.dsl.module
 
 val networkModule = module {
     single {
-        HttpClient(CIO) {
+        HttpClient(OkHttp) {
             defaultRequest {
                 url("https://codestats.net/api")
             }

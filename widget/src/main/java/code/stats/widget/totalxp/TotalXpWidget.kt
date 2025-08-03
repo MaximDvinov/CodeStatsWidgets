@@ -30,7 +30,7 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import code.stats.analytics.AppLogger
-import code.stats.data.repositories.CodeStatsRepository
+import code.stats.domain.repositories.CodeStatsRepository
 import code.stats.widget.utils.formatter
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

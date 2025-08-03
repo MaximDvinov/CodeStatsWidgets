@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "code.stats.analytics"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26

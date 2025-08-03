@@ -1,15 +1,11 @@
-package code.stats.widget.calendar_widget
+package code.stats.domain.usecases
 
 import android.util.Log
-import code.stats.analytics.AppLogger
-import code.stats.data.repositories.CodeStatsRepository
-import code.stats.data.repositories.CodeStatsRepositoryImpl
-import kotlinx.datetime.DateTimePeriod
+import code.stats.domain.repositories.CodeStatsRepository
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.isoDayNumber
 import kotlinx.datetime.plus
-import kotlin.time.Duration.Companion.days
 
 class GetDatesWithXP(private val repository: CodeStatsRepository) {
     suspend operator fun invoke(username: String): Result<List<Pair<LocalDate, Int>>> {

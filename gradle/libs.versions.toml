@@ -1,25 +1,26 @@
 [versions]
 agp = "8.6.1"
-glanceAppwidget = "1.1.0"
+glanceAppwidget = "1.1.1"
 kotlin = "2.0.20"
-coreKtx = "1.13.1"
+coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 kotlinxDatetime = "0.6.1"
 kotlinxSerializationJson = "1.7.2"
-lifecycleRuntimeKtx = "2.8.6"
-activityCompose = "1.9.2"
-composeBom = "2024.09.03"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.9.3"
+composeBom = "2024.10.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 ktor = "3.0.0-rc-1"
 coroutines = "1.9.0"
 koin-bom = "4.0.0"
 materialVersion = "1.12.0"
-googleService = "4.3.15"
-firebaseBom = "33.4.0"
+googleService = "4.4.2"
+firebaseBom = "33.5.1"
 firebaseCrashlytics = "3.0.2"
+realm = "3.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -64,10 +65,12 @@ material = { group = "com.google.android.material", name = "material", version.r
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+realm = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+realm = { id = "io.realm.kotlin", version.ref = "realm" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-service = { id = "com.google.gms.google-services", version.ref = "googleService" }

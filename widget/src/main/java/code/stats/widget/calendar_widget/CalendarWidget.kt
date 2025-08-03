@@ -19,7 +19,8 @@ import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
 import code.stats.analytics.AppLogger
-import code.stats.data.repositories.CodeStatsRepository
+import code.stats.domain.repositories.CodeStatsRepository
+import code.stats.domain.usecases.GetDatesWithXP
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

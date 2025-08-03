@@ -39,6 +39,8 @@ class MainActivity : ComponentActivity() {
         val sharedPrefs = getSharedPreferences("Prefs", MODE_PRIVATE)
         val username = sharedPrefs.getString("username", null) ?: ""
 
+        val text = "RubberDuck, hey!"
+
         setContent {
             CodeStatsWidgetsTheme {
                 Scaffold(
